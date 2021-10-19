@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebApplication1.Models.Report>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advertisement.Tiltle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Agent.AgentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller.Name)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Advertisement.Tiltle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agent.AgentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seller.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ReportId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ReportId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ReportId })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

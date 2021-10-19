@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="862cca8a9871474da399ceb6c181bf0f" Name="Diagram1">
+        <EntityTypeShape EntityType="RealEstateModel.Advertisement" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Agent" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Category" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Image" Width="1.5" PointX="7.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Payment" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Report" Width="1.5" PointX="10.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Seller" Width="1.5" PointX="3" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.User" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="RealEstateModel.FK_Agent_Adsvertise" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_Category_Adsvertise" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_Image_Adsvertise" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_Payment_Adsvertise" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_Report_Adsvertise" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_Seller_Adsvertise" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_User_Adsvertise" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_Agent_User" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_Payment_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_Report_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_Report_Seller" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_Seller_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

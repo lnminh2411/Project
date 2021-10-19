@@ -1,0 +1,106 @@
+﻿@model WebApplication1.Models.Agent
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Agent</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.AgentName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AgentName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.isActivate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.isActivate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Introduction)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Introduction)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EmailHide)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EmailHide)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.User.UserName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.User.UserName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Payment.PaymentName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Payment.PaymentName)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.AgentId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

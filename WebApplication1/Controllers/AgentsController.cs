@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
@@ -66,13 +67,13 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Agents/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? AgentId)
         {
-            if (id == null)
+            if (AgentId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Agent agent = db.Agents.Find(id);
+            Agent agent = db.Agents.Find(AgentId);
             if (agent == null)
             {
                 return HttpNotFound();
@@ -87,14 +88,20 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AgentId,AgentName,Email,Address,Phone,isActivate,Password,Introduction,EmailHide,paymentId,UserId")] Agent agent)
+        public ActionResult Edit([Bind(Include = "AgentId,AgentName,Email,Address,Phone,isActivate,Password,,ConfirmPassword,Introduction,EmailHide,paymentId,UserId")] Agent agent)
         {
+
+
+
             if (ModelState.IsValid)
             {
+                agent.Password = GetMD5(agent.Password);
+                agent.ConfirmPassword = GetMD5(agent.ConfirmPassword);
                 db.Entry(agent).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", agent.UserId);
             ViewBag.paymentId = new SelectList(db.Payments, "PaymentId", "PaymentName", agent.paymentId);
             return View(agent);
@@ -152,6 +159,8 @@ namespace WebApplication1.Controllers
 
         public ActionResult Register()
         {
+            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName");
+            ViewBag.paymentId = new SelectList(db.Payments, "PaymentId", "PaymentName");
             return View();
         }
 
@@ -168,7 +177,6 @@ namespace WebApplication1.Controllers
                     agent.Password = GetMD5(agent.Password);
                     agent.ConfirmPassword = GetMD5(agent.ConfirmPassword);
                     agent.isActivate = false;
-                    agent.paymentId = 1;
                     db.Configuration.ValidateOnSaveEnabled = false;
                     db.Agents.Add(agent);
                     db.SaveChanges();

@@ -41,10 +41,12 @@ namespace WebApplication1.Models
         public bool isActivate { get; set; }
 
         [Required, StringLength(50)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}",
-            ErrorMessage = "Password minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character")]
+        [RegularExpression(@"(?=.*\d)(?=.*[A-Za-z]).{8,}",
+            ErrorMessage = "Password minimum 8 characters at least 1 letter and 1 number")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required]
+        [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Confirm password doesn't match, Type again !")]
         public string ConfirmPassword { get; set; }
         public string Introduction { get; set; }

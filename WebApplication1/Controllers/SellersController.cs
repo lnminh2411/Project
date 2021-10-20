@@ -84,10 +84,12 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SellerId,Name,Gender,Email,Birthdate,Address,Phone,isActivate,Password,UserId")] Seller seller)
+        public ActionResult Edit([Bind(Include = "SellerId,Name,Gender,Email,Birthdate,Address,Phone,isActivate,Password,ConfirmPassword,UserId")] Seller seller)
         {
             if (ModelState.IsValid)
             {
+                seller.Password = GetMD5(seller.Password);
+                seller.ConfirmPassword = GetMD5(seller.ConfirmPassword);
                 db.Entry(seller).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

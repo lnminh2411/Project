@@ -83,9 +83,9 @@
                 @Html.DisplayFor(modelItem => item.Payment.PaymentName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.AgentId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.AgentId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.AgentId })
+                @Html.ActionLink("Edit", "Edit", new { AgentId=item.AgentId }) |
+                @Html.ActionLink("Details", "Details", new { AgentId = item.AgentId }) |
+                @Html.ActionLink("Delete", "Delete", new { AgentId = item.AgentId })
             </td>
         </tr>
     }

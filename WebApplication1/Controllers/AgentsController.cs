@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
@@ -65,21 +66,21 @@ namespace WebApplication1.Controllers
             ViewBag.paymentId = new SelectList(db.Payments, "PaymentId", "PaymentName", agent.paymentId);
             return View(agent);
         }
-
+        
         // GET: Agents/Edit/5
-        public ActionResult Edit(int? AgentId)
+        public ActionResult Edit(int? id)
         {
-            if (AgentId == null)
+            if(id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             }
-            Agent agent = db.Agents.Find(AgentId);
+            Agent agent = db.Agents.Find(id);
             if (agent == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", agent.UserId);
-            ViewBag.paymentId = new SelectList(db.Payments, "PaymentId", "PaymentName", agent.paymentId);
+            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", id);
+            ViewBag.paymentId = new SelectList(db.Payments, "PaymentId", "PaymentName", id);
             return View(agent);
         }
 
@@ -88,11 +89,10 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AgentId,AgentName,Email,Address,Phone,isActivate,Password,,ConfirmPassword,Introduction,EmailHide,paymentId,UserId")] Agent agent)
+        public ActionResult Edit(Agent agent)
         {
-
-
-
+            ModelState.Remove("Password");
+            ModelState.Remove("ConfirmPassword");
             if (ModelState.IsValid)
             {
                 agent.Password = GetMD5(agent.Password);
@@ -101,9 +101,8 @@ namespace WebApplication1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", agent.UserId);
-            ViewBag.paymentId = new SelectList(db.Payments, "PaymentId", "PaymentName", agent.paymentId);
+            ViewBag.paymentId = new SelectList(db.Payments, "PaymentId", "PaymentName", agent.UserId);
             return View(agent);
         }
 

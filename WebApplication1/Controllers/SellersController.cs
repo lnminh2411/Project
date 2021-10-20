@@ -84,8 +84,10 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SellerId,Name,Gender,Email,Birthdate,Address,Phone,isActivate,Password,ConfirmPassword,UserId")] Seller seller)
+        public ActionResult Edit([Bind(Include = "SellerId,Name,Gender,Email,Birthdate,Address,Phone,isActivate,UserId")] Seller seller)
         {
+            ModelState.Remove("Password");
+            ModelState.Remove("ConfirmPassword");
             if (ModelState.IsValid)
             {
                 seller.Password = GetMD5(seller.Password);

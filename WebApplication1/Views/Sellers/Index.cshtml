@@ -30,18 +30,19 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="@Url.Action("Index")" class="logo d-flex align-items-center">
-                ADMIN
+                <span class="d-none d-lg-block">ADMIN</span>
             </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
         </div>
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
                 <li>
-                    <a href="@Url.Action("Logout")">
-                        Logout
+                    <a class="dropdown-item d-flex align-items-center" href="@Url.Action("Logout","Admin")">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Logout</span>
                     </a>
                 </li>
-
             </ul>
         </nav>
 
@@ -91,26 +92,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Create","Advertisement")">
+                        <a href="@Url.Action("Create","Agents")">
                             <i class="bi bi-circle"></i><span>Create</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="tables-general.html">
-                            <i class="bi bi-circle"></i><span>General Tables</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="tables-data.html">
-                            <i class="bi bi-circle"></i><span>Data Tables</span>
                         </a>
                     </li>
                 </ul>
@@ -137,7 +120,7 @@
             <li class="nav-heading">Others</li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="@Url.Action("Index","Catergories")">
+                <a class="nav-link collapsed" href="@Url.Action("Index","Categories")">
                     <i class="bi bi-person"></i>
                     <span>Category</span>
                 </a>
@@ -172,15 +155,15 @@
 
         <section class="section dashboard">
             <div class="row">
-
+                <p>
+                    @Html.ActionLink("Create New", "Create")
+                </p>
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-12">
                             <!-- css 807 217 -->
                             <div class="card recent-sales">
-                                <p>
-                                    @Html.ActionLink("Create New", "Create")
-                                </p>
+                                <h4>Active Seller</h4>
                                 <table class="table">
                                     <tr>
                                         <th>
@@ -215,40 +198,44 @@
 
                                     @foreach (var item in Model)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Name)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Gender)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Email)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Birthdate)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Address)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Phone)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.isActivate)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Password)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.User.UserName)
-                                            </td>
-                                            <td>
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.SellerId }) |
-                                                @Html.ActionLink("Details", "Details", new { id = item.SellerId }) |
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.SellerId })
-                                            </td>
-                                        </tr>
+                                        if (item.isActivate == true)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Gender)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Email)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Birthdate)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Address)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Phone)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.isActivate)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Password)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.User.UserName)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Edit", "Edit", new { id = item.SellerId }) |
+                                                    @Html.ActionLink("Details", "Details", new { id = item.SellerId }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.SellerId })
+                                                </td>
+                                            </tr>
+                                        }
+
                                     }
 
                                 </table>
@@ -295,7 +282,7 @@
 
                                     @foreach (var item in Model)
                                     {
-                                        if (item.isActivate)
+                                        if (item.isActivate == false)
                                         {
                                             <tr>
                                                 <td>
@@ -337,6 +324,7 @@
                                 </table>
                             </div>
                         </div>
+
                     </div>
                 </div>
 

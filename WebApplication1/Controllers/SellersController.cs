@@ -90,8 +90,6 @@ namespace WebApplication1.Controllers
             ModelState.Remove("ConfirmPassword");
             if (ModelState.IsValid)
             {
-                seller.Password = GetMD5(seller.Password);
-                seller.ConfirmPassword = GetMD5(seller.ConfirmPassword);
                 db.Entry(seller).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

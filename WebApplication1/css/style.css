@@ -21,7 +21,6 @@ body {
 a {
   color: #4154f1;
   text-decoration: none;
-  margin-right: 10px;
 }
 
 a:hover {
@@ -362,7 +361,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 997;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background-color: #111;
+  background-color: wheat;
   padding-left: 20px;
   /* Toggle Sidebar Button */
   /* Search Bar */
@@ -609,7 +608,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   color: gold;
   transition: 0.3;
-  background: gray;
   padding: 10px 15px;
   border-radius: 4px;
 }
@@ -620,7 +618,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .sidebar-nav .nav-link.collapsed {
   color: gold;
-  background: gray;
 }
 .sidebar-nav .nav-link.collapsed i {
   color: #899bbd;

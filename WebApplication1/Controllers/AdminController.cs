@@ -21,7 +21,6 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                ViewBag.error = "Login failed";
                 return RedirectToAction("Login", "Admin");
             }
         }
@@ -51,7 +50,6 @@ namespace WebApplication1.Controllers
                 {
                     ViewBag.Message = "Wrong username or password";
                 }
-                return View();
             }
             return View();
         }
